@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smiley Site</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f7fb;
+        color: #1f2937;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+      }
+
+      main {
+        width: min(90vw, 420px);
+        text-align: center;
+      }
+
+      .smiley {
+        width: min(68vw, 260px);
+        aspect-ratio: 1;
+        margin: 0 auto 28px;
+        border-radius: 50%;
+        background: #ffd84d;
+        border: 8px solid #f0b429;
+        position: relative;
+        box-shadow: 0 22px 45px rgba(31, 41, 55, 0.18);
+      }
+
+      .smiley::before,
+      .smiley::after {
+        content: "";
+        position: absolute;
+        top: 30%;
+        width: 16%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: #1f2937;
+      }
+
+      .smiley::before {
+        left: 27%;
+      }
+
+      .smiley::after {
+        right: 27%;
+      }
+
+      .mouth {
+        position: absolute;
+        left: 50%;
+        bottom: 24%;
+        width: 42%;
+        height: 24%;
+        border: 10px solid #1f2937;
+        border-top: 0;
+        border-radius: 0 0 100px 100px;
+        transform: translateX(-50%);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 8vw, 3.75rem);
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-label="A simple smiley face website">
+      <div class="smiley" role="img" aria-label="A smiling face">
+        <div class="mouth"></div>
+      </div>
+      <h1>Hello :)</h1>
+    </main>
+  </body>
+</html>
