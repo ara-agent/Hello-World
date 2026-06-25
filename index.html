@@ -10,13 +10,30 @@
         min-height: 100vh;
         display: grid;
         place-items: center;
-        background: #0066ff;
-        color: white;
+        background: #f5f5f3;
+        color: #111111;
         font-family: system-ui, sans-serif;
+      }
+
+      main {
+        width: min(88vw, 520px);
+        padding: 56px 0;
+        border-top: 1px solid #111111;
+        border-bottom: 1px solid #111111;
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(3rem, 12vw, 7rem);
+        font-weight: 500;
+        line-height: 0.95;
       }
     </style>
   </head>
   <body>
-    <h1>Hello World!</h1>
+    <main>
+      <h1>Hello World!</h1>
+    </main>
   </body>
 </html>
