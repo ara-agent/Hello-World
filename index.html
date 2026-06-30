@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Field Notes Studio</title>
+  <title>Signal Kitchen</title>
   <style>
     :root {
       color-scheme: light;
-      --ink: #17211c;
-      --muted: #5d6862;
+      --ink: #1e293b;
+      --muted: #64748b;
       --paper: #e5e7eb;
       --panel: #ffffff;
-      --line: #c9d1c8;
-      --forest: #14532d;
+      --line: #cbd5e1;
+      --tomato: #b91c1c;
+      --herb: #15803d;
       --blue: #1d4ed8;
-      --rust: #a16207;
       --soft: #f8fafc;
-      --shadow: 0 18px 44px rgba(23, 33, 28, 0.14);
+      --shadow: 0 20px 48px rgba(30, 41, 59, 0.15);
     }
 
     * {
@@ -38,9 +38,9 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
+      z-index: 10;
       border-bottom: 1px solid var(--line);
-      background: rgba(229, 231, 235, 0.9);
+      background: rgba(229, 231, 235, 0.92);
       backdrop-filter: blur(12px);
     }
 
@@ -56,7 +56,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 20px;
     }
 
     .brand {
@@ -68,20 +68,19 @@
       text-decoration: none;
     }
 
-    .brand-mark {
+    .mark {
       width: 34px;
       height: 34px;
       display: grid;
       place-items: center;
       border-radius: 8px;
-      background: var(--forest);
+      background: var(--tomato);
       color: white;
       font-weight: 900;
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
       gap: 18px;
     }
 
@@ -102,7 +101,7 @@
 
     .eyebrow {
       margin: 0 0 16px;
-      color: var(--forest);
+      color: var(--tomato);
       font-size: 0.8rem;
       font-weight: 850;
       letter-spacing: 0;
@@ -110,10 +109,10 @@
     }
 
     h1 {
-      max-width: 800px;
+      max-width: 780px;
       margin: 0;
-      font-size: clamp(3rem, 8vw, 6.5rem);
-      line-height: 0.93;
+      font-size: clamp(3rem, 8vw, 6.4rem);
+      line-height: 0.94;
       letter-spacing: 0;
     }
 
@@ -138,9 +137,9 @@
       align-items: center;
       justify-content: center;
       padding: 0 18px;
-      border: 1px solid var(--forest);
+      border: 1px solid var(--tomato);
       border-radius: 7px;
-      background: var(--forest);
+      background: var(--tomato);
       color: white;
       font-weight: 850;
       text-decoration: none;
@@ -152,7 +151,7 @@
       color: var(--ink);
     }
 
-    .journal {
+    .feature {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
@@ -160,53 +159,43 @@
       overflow: hidden;
     }
 
-    .journal-image {
+    .feature-image {
       min-height: 250px;
       background:
-        linear-gradient(rgba(23, 33, 28, 0.1), rgba(23, 33, 28, 0.1)),
-        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80") center / cover;
+        linear-gradient(rgba(30, 41, 59, 0.12), rgba(30, 41, 59, 0.12)),
+        url("https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1000&q=80") center / cover;
     }
 
-    .journal-body {
+    .feature-body {
       padding: 24px;
     }
 
-    .journal-body h2 {
+    .feature-body h2 {
       margin: 0 0 10px;
       font-size: 1.45rem;
     }
 
-    .journal-body p {
+    .feature-body p {
       margin: 0;
       color: var(--muted);
       line-height: 1.65;
     }
 
-    .meta {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
-    .meta div {
-      min-height: 86px;
-      padding: 14px;
+    .chip {
+      padding: 8px 10px;
       border: 1px solid var(--line);
-      border-radius: 8px;
+      border-radius: 999px;
       background: var(--soft);
-    }
-
-    .meta strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1.35rem;
-    }
-
-    .meta span {
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.35;
+      color: var(--ink);
+      font-size: 0.86rem;
+      font-weight: 760;
     }
 
     .section {
@@ -227,7 +216,7 @@
     }
 
     .card {
-      min-height: 192px;
+      min-height: 190px;
       padding: 22px;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -240,7 +229,7 @@
       padding: 6px 10px;
       border-radius: 999px;
       background: #dcfce7;
-      color: var(--forest);
+      color: var(--herb);
       font-size: 0.82rem;
       font-weight: 850;
     }
@@ -285,10 +274,6 @@
         justify-content: space-between;
       }
 
-      .meta {
-        grid-template-columns: 1fr;
-      }
-
       h1 {
         font-size: clamp(2.7rem, 15vw, 4.5rem);
       }
@@ -299,13 +284,13 @@
   <header>
     <nav aria-label="Primary navigation">
       <a class="brand" href="#">
-        <span class="brand-mark">F</span>
-        <span>Field Notes Studio</span>
+        <span class="mark">S</span>
+        <span>Signal Kitchen</span>
       </a>
       <div class="nav-links">
-        <a href="#trips">Trips</a>
-        <a href="#tools">Tools</a>
-        <a href="#contact">Contact</a>
+        <a href="#menus">Menus</a>
+        <a href="#classes">Classes</a>
+        <a href="#visit">Visit</a>
       </div>
     </nav>
   </header>
@@ -313,65 +298,55 @@
   <main>
     <section class="hero">
       <div>
-        <p class="eyebrow">Outdoor planning journal</p>
-        <h1>Better notes for days outside.</h1>
+        <p class="eyebrow">Hands-on cooking studio</p>
+        <h1>Cook sharper meals with less noise.</h1>
         <p class="intro">
-          Field Notes Studio is a clean static website for planning hikes, logging conditions, and keeping practical gear notes in one calm place.
+          Signal Kitchen is a static website for a neighborhood cooking studio focused on practical classes, seasonal menus, and clear weeknight technique.
         </p>
         <div class="actions">
-          <a class="button" href="#trips">Browse Trips</a>
-          <a class="button secondary" href="#tools">See Tools</a>
+          <a class="button" href="#classes">Book a Class</a>
+          <a class="button secondary" href="#menus">View Menus</a>
         </div>
       </div>
 
-      <aside class="journal" aria-label="Latest field note">
-        <div class="journal-image" role="img" aria-label="Open field under a wide sky"></div>
-        <div class="journal-body">
-          <span class="tag">Latest note</span>
-          <h2>Ridge loop, clear weather</h2>
-          <p>Eight miles, steady grade, dry trail, and enough wind on the ridge to make a shell worth packing.</p>
-          <div class="meta">
-            <div>
-              <strong>8.1</strong>
-              <span>miles logged</span>
-            </div>
-            <div>
-              <strong>2k</strong>
-              <span>feet gained</span>
-            </div>
-            <div>
-              <strong>54</strong>
-              <span>degrees at start</span>
-            </div>
+      <aside class="feature" aria-label="Featured class">
+        <div class="feature-image" role="img" aria-label="Fresh ingredients on a kitchen counter"></div>
+        <div class="feature-body">
+          <h2>Summer skillet workshop</h2>
+          <p>Learn fast prep, clean seasoning, and one-pan timing for vegetables, grains, and crisp edges.</p>
+          <div class="chips" aria-label="Class details">
+            <span class="chip">90 minutes</span>
+            <span class="chip">Beginner friendly</span>
+            <span class="chip">12 seats</span>
           </div>
         </div>
       </aside>
     </section>
 
-    <section class="section" id="trips">
-      <h2>Plan with less noise.</h2>
+    <section class="section" id="classes">
+      <h2>Built for real kitchens.</h2>
       <div class="grid">
-        <article class="card">
-          <span class="tag">Routes</span>
-          <h3>Keep the essentials visible</h3>
-          <p>Distance, elevation, weather, and turnaround points are organized for fast pre-trip review.</p>
-        </article>
-        <article class="card" id="tools">
-          <span class="tag">Gear</span>
-          <h3>Track what actually matters</h3>
-          <p>Pack layers, water, traction, maps, and repair items without building an overloaded checklist.</p>
+        <article class="card" id="menus">
+          <span class="tag">Menus</span>
+          <h3>Seasonal recipes</h3>
+          <p>Short menus built around available produce, pantry staples, and repeatable techniques.</p>
         </article>
         <article class="card">
-          <span class="tag">Logs</span>
-          <h3>Learn from each outing</h3>
-          <p>Short field notes make it easier to remember conditions, timing, and small improvements.</p>
+          <span class="tag">Skills</span>
+          <h3>Useful fundamentals</h3>
+          <p>Knife work, heat control, salt balance, and cleanup habits that make everyday cooking easier.</p>
+        </article>
+        <article class="card" id="visit">
+          <span class="tag">Studio</span>
+          <h3>Small group format</h3>
+          <p>Quiet instruction, clear stations, and enough space for every student to cook actively.</p>
         </article>
       </div>
     </section>
   </main>
 
-  <footer id="contact">
-    Field Notes Studio demo site. Served locally from one static HTML file.
+  <footer>
+    Signal Kitchen demo site. Served locally from a single static HTML file.
   </footer>
 </body>
 </html>
