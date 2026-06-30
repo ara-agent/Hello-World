@@ -3,23 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Atlas Coffee Bar</title>
+  <title>Field Notes Studio</title>
   <style>
     :root {
       color-scheme: light;
-      --ink: #1f2933;
-      --muted: #64748b;
+      --ink: #17211c;
+      --muted: #5d6862;
       --paper: #e5e7eb;
       --panel: #ffffff;
-      --line: #cbd5e1;
-      --green: #166534;
-      --brick: #b45309;
+      --line: #c9d1c8;
+      --forest: #14532d;
       --blue: #1d4ed8;
-      --shadow: 0 18px 42px rgba(31, 41, 51, 0.14);
+      --rust: #a16207;
+      --soft: #f8fafc;
+      --shadow: 0 18px 44px rgba(23, 33, 28, 0.14);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -31,12 +36,12 @@
     }
 
     header {
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.86);
-      backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: rgba(229, 231, 235, 0.9);
+      backdrop-filter: blur(12px);
     }
 
     nav,
@@ -51,7 +56,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 18px;
     }
 
     .brand {
@@ -69,25 +74,27 @@
       display: grid;
       place-items: center;
       border-radius: 8px;
-      background: var(--green);
+      background: var(--forest);
       color: white;
+      font-weight: 900;
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 18px;
     }
 
     .nav-links a {
       color: var(--muted);
-      font-weight: 750;
+      font-weight: 760;
       text-decoration: none;
     }
 
     .hero {
       min-height: calc(100vh - 64px);
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.9fr);
       gap: 34px;
       align-items: center;
       padding: 54px 0 44px;
@@ -95,7 +102,7 @@
 
     .eyebrow {
       margin: 0 0 16px;
-      color: var(--green);
+      color: var(--forest);
       font-size: 0.8rem;
       font-weight: 850;
       letter-spacing: 0;
@@ -103,18 +110,18 @@
     }
 
     h1 {
-      max-width: 760px;
+      max-width: 800px;
       margin: 0;
-      font-size: clamp(3rem, 8vw, 6.4rem);
-      line-height: 0.94;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 0.93;
       letter-spacing: 0;
     }
 
     .intro {
-      max-width: 620px;
+      max-width: 640px;
       margin: 24px 0 0;
       color: var(--muted);
-      font-size: 1.15rem;
+      font-size: 1.16rem;
       line-height: 1.7;
     }
 
@@ -131,9 +138,9 @@
       align-items: center;
       justify-content: center;
       padding: 0 18px;
-      border: 1px solid var(--green);
+      border: 1px solid var(--forest);
       border-radius: 7px;
-      background: var(--green);
+      background: var(--forest);
       color: white;
       font-weight: 850;
       text-decoration: none;
@@ -145,7 +152,7 @@
       color: var(--ink);
     }
 
-    .menu-panel {
+    .journal {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
@@ -153,41 +160,53 @@
       overflow: hidden;
     }
 
-    .menu-photo {
-      min-height: 220px;
+    .journal-image {
+      min-height: 250px;
       background:
-        linear-gradient(rgba(31, 41, 51, 0.12), rgba(31, 41, 51, 0.12)),
-        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80") center / cover;
+        linear-gradient(rgba(23, 33, 28, 0.1), rgba(23, 33, 28, 0.1)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80") center / cover;
     }
 
-    .menu-body {
+    .journal-body {
       padding: 24px;
     }
 
-    .menu-body h2 {
-      margin: 0 0 12px;
-      font-size: 1.5rem;
+    .journal-body h2 {
+      margin: 0 0 10px;
+      font-size: 1.45rem;
     }
 
-    .menu-list {
-      display: grid;
-      gap: 12px;
-      margin: 18px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .menu-list li {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
+    .journal-body p {
+      margin: 0;
       color: var(--muted);
+      line-height: 1.65;
     }
 
-    .menu-list strong {
-      color: var(--ink);
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .meta div {
+      min-height: 86px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--soft);
+    }
+
+    .meta strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.35rem;
+    }
+
+    .meta span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.35;
     }
 
     .section {
@@ -208,11 +227,22 @@
     }
 
     .card {
-      min-height: 190px;
+      min-height: 192px;
       padding: 22px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #dcfce7;
+      color: var(--forest);
+      font-size: 0.82rem;
+      font-weight: 850;
     }
 
     .card h3 {
@@ -226,24 +256,13 @@
       line-height: 1.65;
     }
 
-    .tag {
-      display: inline-flex;
-      margin-bottom: 14px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #dcfce7;
-      color: var(--green);
-      font-size: 0.82rem;
-      font-weight: 850;
-    }
-
     footer {
       padding: 28px 0 44px;
       color: var(--muted);
       border-top: 1px solid var(--line);
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 880px) {
       .hero,
       .grid {
         grid-template-columns: 1fr;
@@ -266,8 +285,12 @@
         justify-content: space-between;
       }
 
+      .meta {
+        grid-template-columns: 1fr;
+      }
+
       h1 {
-        font-size: clamp(2.7rem, 15vw, 4.4rem);
+        font-size: clamp(2.7rem, 15vw, 4.5rem);
       }
     }
   </style>
@@ -276,13 +299,13 @@
   <header>
     <nav aria-label="Primary navigation">
       <a class="brand" href="#">
-        <span class="brand-mark">A</span>
-        <span>Atlas Coffee Bar</span>
+        <span class="brand-mark">F</span>
+        <span>Field Notes Studio</span>
       </a>
       <div class="nav-links">
-        <a href="#menu">Menu</a>
-        <a href="#visit">Visit</a>
-        <a href="#hours">Hours</a>
+        <a href="#trips">Trips</a>
+        <a href="#tools">Tools</a>
+        <a href="#contact">Contact</a>
       </div>
     </nav>
   </header>
@@ -290,52 +313,65 @@
   <main>
     <section class="hero">
       <div>
-        <p class="eyebrow">Neighborhood coffee, no fuss</p>
-        <h1>Fresh coffee for slow mornings.</h1>
+        <p class="eyebrow">Outdoor planning journal</p>
+        <h1>Better notes for days outside.</h1>
         <p class="intro">
-          Atlas Coffee Bar is a static homepage for a friendly local cafe, with a focused menu, clear hours, and a warm first impression.
+          Field Notes Studio is a clean static website for planning hikes, logging conditions, and keeping practical gear notes in one calm place.
         </p>
         <div class="actions">
-          <a class="button" href="#menu">See Menu</a>
-          <a class="button secondary" href="#visit">Plan Visit</a>
+          <a class="button" href="#trips">Browse Trips</a>
+          <a class="button secondary" href="#tools">See Tools</a>
         </div>
       </div>
 
-      <aside class="menu-panel" id="menu" aria-label="Featured menu">
-        <div class="menu-photo" role="img" aria-label="Coffee being poured into a cup"></div>
-        <div class="menu-body">
-          <span class="tag">Today</span>
-          <h2>Featured pours</h2>
-          <ul class="menu-list">
-            <li><strong>House Drip</strong><span>$3.50</span></li>
-            <li><strong>Maple Latte</strong><span>$5.25</span></li>
-            <li><strong>Cold Brew</strong><span>$4.75</span></li>
-          </ul>
+      <aside class="journal" aria-label="Latest field note">
+        <div class="journal-image" role="img" aria-label="Open field under a wide sky"></div>
+        <div class="journal-body">
+          <span class="tag">Latest note</span>
+          <h2>Ridge loop, clear weather</h2>
+          <p>Eight miles, steady grade, dry trail, and enough wind on the ridge to make a shell worth packing.</p>
+          <div class="meta">
+            <div>
+              <strong>8.1</strong>
+              <span>miles logged</span>
+            </div>
+            <div>
+              <strong>2k</strong>
+              <span>feet gained</span>
+            </div>
+            <div>
+              <strong>54</strong>
+              <span>degrees at start</span>
+            </div>
+          </div>
         </div>
       </aside>
     </section>
 
-    <section class="section" id="visit">
-      <h2>Made for regular stops.</h2>
+    <section class="section" id="trips">
+      <h2>Plan with less noise.</h2>
       <div class="grid">
         <article class="card">
-          <h3>Simple menu</h3>
-          <p>Core drinks, seasonal specials, and pastry pairings without burying visitors in choices.</p>
+          <span class="tag">Routes</span>
+          <h3>Keep the essentials visible</h3>
+          <p>Distance, elevation, weather, and turnaround points are organized for fast pre-trip review.</p>
+        </article>
+        <article class="card" id="tools">
+          <span class="tag">Gear</span>
+          <h3>Track what actually matters</h3>
+          <p>Pack layers, water, traction, maps, and repair items without building an overloaded checklist.</p>
         </article>
         <article class="card">
-          <h3>Comfortable pace</h3>
-          <p>Readable sections and strong contrast make the page easy to scan before a commute.</p>
-        </article>
-        <article class="card" id="hours">
-          <h3>Open daily</h3>
-          <p>Weekdays 7-5, weekends 8-4. The page is static, lightweight, and ready from localhost.</p>
+          <span class="tag">Logs</span>
+          <h3>Learn from each outing</h3>
+          <p>Short field notes make it easier to remember conditions, timing, and small improvements.</p>
         </article>
       </div>
     </section>
   </main>
 
-  <footer>
-    Atlas Coffee Bar demo site. Served locally from a single HTML file.
+  <footer id="contact">
+    Field Notes Studio demo site. Served locally from one static HTML file.
   </footer>
 </body>
 </html>
