@@ -3,27 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Northstar Desk</title>
+  <title>Atlas Coffee Bar</title>
   <style>
     :root {
       color-scheme: light;
-      --ink: #14213d;
-      --muted: #526071;
-      --line: #cbd5e1;
+      --ink: #1f2933;
+      --muted: #64748b;
       --paper: #e5e7eb;
       --panel: #ffffff;
-      --accent: #0f766e;
-      --accent-2: #b45309;
-      --soft: #eff6ff;
-      --shadow: 0 20px 50px rgba(20, 33, 61, 0.14);
+      --line: #cbd5e1;
+      --green: #166534;
+      --brick: #b45309;
+      --blue: #1d4ed8;
+      --shadow: 0 18px 42px rgba(31, 41, 51, 0.14);
     }
 
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -35,18 +31,23 @@
     }
 
     header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(12px);
       position: sticky;
       top: 0;
       z-index: 10;
-      border-bottom: 1px solid rgba(203, 213, 225, 0.8);
-      background: rgba(219, 234, 254, 0.92);
-      backdrop-filter: blur(14px);
+    }
+
+    nav,
+    main,
+    footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
     }
 
     nav {
-      width: min(1120px, calc(100% - 32px));
       min-height: 64px;
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -62,51 +63,39 @@
       text-decoration: none;
     }
 
-    .mark {
+    .brand-mark {
       width: 34px;
       height: 34px;
       display: grid;
       place-items: center;
       border-radius: 8px;
-      background: var(--ink);
+      background: var(--green);
       color: white;
-      font-size: 0.95rem;
     }
 
     .nav-links {
       display: flex;
-      align-items: center;
       gap: 18px;
     }
 
     .nav-links a {
       color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 700;
+      font-weight: 750;
       text-decoration: none;
-    }
-
-    main {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
     }
 
     .hero {
       min-height: calc(100vh - 64px);
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
       gap: 34px;
       align-items: center;
-      padding: 52px 0 42px;
-    }
-
-    .hero-copy {
-      padding: 18px 0;
+      padding: 54px 0 44px;
     }
 
     .eyebrow {
       margin: 0 0 16px;
-      color: var(--accent);
+      color: var(--green);
       font-size: 0.8rem;
       font-weight: 850;
       letter-spacing: 0;
@@ -116,13 +105,13 @@
     h1 {
       max-width: 760px;
       margin: 0;
-      font-size: clamp(3.2rem, 8vw, 6.7rem);
-      line-height: 0.92;
+      font-size: clamp(3rem, 8vw, 6.4rem);
+      line-height: 0.94;
       letter-spacing: 0;
     }
 
     .intro {
-      max-width: 640px;
+      max-width: 620px;
       margin: 24px 0 0;
       color: var(--muted);
       font-size: 1.15rem;
@@ -141,11 +130,10 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
       padding: 0 18px;
-      border: 1px solid var(--accent);
+      border: 1px solid var(--green);
       border-radius: 7px;
-      background: var(--accent);
+      background: var(--green);
       color: white;
       font-weight: 850;
       text-decoration: none;
@@ -153,11 +141,11 @@
 
     .button.secondary {
       border-color: var(--line);
-      background: rgba(255, 255, 255, 0.6);
+      background: white;
       color: var(--ink);
     }
 
-    .preview {
+    .menu-panel {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: var(--panel);
@@ -165,80 +153,46 @@
       overflow: hidden;
     }
 
-    .preview-bar {
-      height: 42px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0 14px;
-      border-bottom: 1px solid var(--line);
-      background: #f8fafc;
+    .menu-photo {
+      min-height: 220px;
+      background:
+        linear-gradient(rgba(31, 41, 51, 0.12), rgba(31, 41, 51, 0.12)),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80") center / cover;
     }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #94a3b8;
-    }
-
-    .dot:nth-child(2) {
-      background: var(--accent-2);
-    }
-
-    .dot:nth-child(3) {
-      background: var(--accent);
-    }
-
-    .preview-body {
+    .menu-body {
       padding: 24px;
     }
 
-    .status-row {
+    .menu-body h2 {
+      margin: 0 0 12px;
+      font-size: 1.5rem;
+    }
+
+    .menu-list {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-bottom: 18px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
     }
 
-    .status {
-      min-height: 92px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--soft);
-    }
-
-    .status strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1.45rem;
-    }
-
-    .status span {
+    .menu-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
       color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.35;
     }
 
-    .terminal {
-      min-height: 240px;
-      padding: 18px;
-      border-radius: 8px;
-      background: #111827;
-      color: #d1fae5;
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-      font-size: 0.95rem;
-      line-height: 1.75;
-    }
-
-    .terminal p {
-      margin: 0;
+    .menu-list strong {
+      color: var(--ink);
     }
 
     .section {
-      padding: 70px 0;
-      border-top: 1px solid rgba(203, 213, 225, 0.9);
+      padding: 72px 0;
+      border-top: 1px solid var(--line);
     }
 
     .section h2 {
@@ -258,12 +212,12 @@
       padding: 22px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.78);
+      background: rgba(255, 255, 255, 0.8);
     }
 
     .card h3 {
       margin: 0 0 10px;
-      font-size: 1.1rem;
+      font-size: 1.08rem;
     }
 
     .card p {
@@ -272,22 +226,31 @@
       line-height: 1.65;
     }
 
+    .tag {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #dcfce7;
+      color: var(--green);
+      font-size: 0.82rem;
+      font-weight: 850;
+    }
+
     footer {
-      padding: 30px 0 44px;
+      padding: 28px 0 44px;
       color: var(--muted);
-      border-top: 1px solid rgba(203, 213, 225, 0.9);
+      border-top: 1px solid var(--line);
     }
 
     @media (max-width: 860px) {
-      .hero {
-        min-height: auto;
+      .hero,
+      .grid {
         grid-template-columns: 1fr;
-        padding-top: 42px;
       }
 
-      .grid,
-      .status-row {
-        grid-template-columns: 1fr;
+      .hero {
+        min-height: auto;
       }
     }
 
@@ -304,7 +267,7 @@
       }
 
       h1 {
-        font-size: clamp(2.8rem, 15vw, 4.6rem);
+        font-size: clamp(2.7rem, 15vw, 4.4rem);
       }
     }
   </style>
@@ -313,94 +276,66 @@
   <header>
     <nav aria-label="Primary navigation">
       <a class="brand" href="#">
-        <span class="mark">N</span>
-        <span>Northstar Desk</span>
+        <span class="brand-mark">A</span>
+        <span>Atlas Coffee Bar</span>
       </a>
       <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#status">Status</a>
-        <a href="#contact">Contact</a>
+        <a href="#menu">Menu</a>
+        <a href="#visit">Visit</a>
+        <a href="#hours">Hours</a>
       </div>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Static website</p>
-        <h1>Plan the day from one calm desk.</h1>
+      <div>
+        <p class="eyebrow">Neighborhood coffee, no fuss</p>
+        <h1>Fresh coffee for slow mornings.</h1>
         <p class="intro">
-          Northstar Desk is a lightweight homepage concept for teams that want a clear daily launchpad: priorities, status, and next actions in one responsive page.
+          Atlas Coffee Bar is a static homepage for a friendly local cafe, with a focused menu, clear hours, and a warm first impression.
         </p>
         <div class="actions">
-          <a class="button" href="#features">Explore Features</a>
-          <a class="button secondary" href="#status">View Status</a>
+          <a class="button" href="#menu">See Menu</a>
+          <a class="button secondary" href="#visit">Plan Visit</a>
         </div>
       </div>
 
-      <aside class="preview" aria-label="Dashboard preview" id="status">
-        <div class="preview-bar" aria-hidden="true">
-          <span class="dot"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
-        </div>
-        <div class="preview-body">
-          <div class="status-row">
-            <div class="status">
-              <strong>7</strong>
-              <span>active priorities</span>
-            </div>
-            <div class="status">
-              <strong>98%</strong>
-              <span>site readiness</span>
-            </div>
-            <div class="status">
-              <strong>0</strong>
-              <span>build steps</span>
-            </div>
-          </div>
-          <div class="terminal" aria-label="Local server status">
-            <p>$ python3 -m http.server 8000</p>
-            <p>Serving HTTP on 127.0.0.1</p>
-            <p>Static HTML ready.</p>
-            <p>Last refresh: <span id="time">loading</span></p>
-          </div>
+      <aside class="menu-panel" id="menu" aria-label="Featured menu">
+        <div class="menu-photo" role="img" aria-label="Coffee being poured into a cup"></div>
+        <div class="menu-body">
+          <span class="tag">Today</span>
+          <h2>Featured pours</h2>
+          <ul class="menu-list">
+            <li><strong>House Drip</strong><span>$3.50</span></li>
+            <li><strong>Maple Latte</strong><span>$5.25</span></li>
+            <li><strong>Cold Brew</strong><span>$4.75</span></li>
+          </ul>
         </div>
       </aside>
     </section>
 
-    <section class="section" id="features">
-      <h2>Built for quick review.</h2>
+    <section class="section" id="visit">
+      <h2>Made for regular stops.</h2>
       <div class="grid">
         <article class="card">
-          <h3>Single file</h3>
-          <p>Everything lives in one HTML document, including responsive styling and a small live timestamp.</p>
+          <h3>Simple menu</h3>
+          <p>Core drinks, seasonal specials, and pastry pairings without burying visitors in choices.</p>
         </article>
         <article class="card">
-          <h3>Responsive layout</h3>
-          <p>The desktop dashboard folds into a clean mobile stack without hiding core content.</p>
+          <h3>Comfortable pace</h3>
+          <p>Readable sections and strong contrast make the page easy to scan before a commute.</p>
         </article>
-        <article class="card">
-          <h3>Local first</h3>
-          <p>No package install is required. Serve it from localhost or open the file directly in a browser.</p>
+        <article class="card" id="hours">
+          <h3>Open daily</h3>
+          <p>Weekdays 7-5, weekends 8-4. The page is static, lightweight, and ready from localhost.</p>
         </article>
       </div>
     </section>
   </main>
 
-  <footer id="contact">
-    <main>Northstar Desk is a static HTML demo served locally.</main>
+  <footer>
+    Atlas Coffee Bar demo site. Served locally from a single HTML file.
   </footer>
-
-  <script>
-    const time = document.querySelector("#time");
-
-    function updateTime() {
-      time.textContent = new Date().toLocaleTimeString();
-    }
-
-    updateTime();
-    setInterval(updateTime, 1000);
-  </script>
 </body>
 </html>
