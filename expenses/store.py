@@ -132,6 +132,8 @@ def _extract_expenses(data: Any) -> list[Any]:
 def _parse_optional_date(value: str | None, field: str) -> date | None:
     if value is None:
         return None
+    if not isinstance(value, str):
+        raise ValueError(f"{field} must be a string in YYYY-MM-DD format")
     try:
         return date.fromisoformat(value)
     except ValueError as exc:

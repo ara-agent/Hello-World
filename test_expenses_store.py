@@ -55,6 +55,28 @@ class ExpenseStoreTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.store.list(start_date="2026-08-01", end_date="2026-07-01")
 
+    def test_rejects_non_string_date_filters(self):
+        cases = (
+            {"start_date": 123},
+            {"end_date": 123},
+        )
+        for kwargs in cases:
+            with self.subTest(kwargs=kwargs):
+                field = next(iter(kwargs))
+                with self.assertRaisesRegex(ValueError, f"{field} must be a string"):
+                    self.store.list(**kwargs)
+
+    def test_rejects_invalid_date_filter_strings(self):
+        cases = (
+            {"start_date": "2026-02-30"},
+            {"end_date": "not-a-date"},
+        )
+        for kwargs in cases:
+            with self.subTest(kwargs=kwargs):
+                field = next(iter(kwargs))
+                with self.assertRaisesRegex(ValueError, f"{field} must be a valid ISO date"):
+                    self.store.list(**kwargs)
+
     def test_monthly_totals_by_category(self):
         self.store.add(Expense(100, "food", "2026-07-01", id="a"))
         self.store.add(Expense(250, "food", "2026-07-31", id="b"))

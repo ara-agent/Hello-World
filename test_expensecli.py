@@ -65,6 +65,23 @@ class ExpenseCliTests(unittest.TestCase):
                 self.assertEqual(stdout.getvalue(), "")
                 self.assertIn("error: category filter must not be empty", stderr.getvalue())
 
+    def test_invalid_date_filters_have_clear_errors(self):
+        cases = (
+            ("--start-date", "not-a-date", "start_date"),
+            ("--end-date", "2026-02-30", "end_date"),
+        )
+        for flag, value, field in cases:
+            with self.subTest(flag=flag):
+                stdout = io.StringIO()
+                stderr = io.StringIO()
+                with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                    with self.assertRaises(SystemExit) as caught:
+                        expensecli.main(["--store", str(self.store), "ls", flag, value])
+
+                self.assertEqual(caught.exception.code, 1)
+                self.assertEqual(stdout.getvalue(), "")
+                self.assertIn(f"error: {field} must be a valid ISO date", stderr.getvalue())
+
     def test_invalid_amount_has_clear_error(self):
         stdout = io.StringIO()
         stderr = io.StringIO()
