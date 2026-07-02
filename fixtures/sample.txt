@@ -1,0 +1,3 @@
+Hello world, hello utility.
+Words repeat; words count.
+Count the world clearly.
