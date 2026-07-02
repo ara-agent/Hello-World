@@ -68,6 +68,13 @@ class ValidateTests(unittest.TestCase):
         self.assertEqual(validate({"a": [1.0, False, None]}, schema), [])
         self.assertEqual(validate({"a": [1, 0, None]}, schema), ["/: value not in enum"])
 
+    def test_schema_node_empty_enum_rejects_top_level_values(self):
+        self.assertEqual(validate("x", SchemaNode(enum=[])), ["/: value not in enum"])
+
+    def test_schema_node_empty_enum_rejects_nested_values(self):
+        schema = SchemaNode(type="object", properties={"name": SchemaNode(enum=[])})
+        self.assertEqual(validate({"name": "Ada"}, schema), ["/name: value not in enum"])
+
     def test_minimum_valid_and_invalid(self):
         schema = {"type": "number", "minimum": 10}
         self.assertEqual(validate(10, schema), [])

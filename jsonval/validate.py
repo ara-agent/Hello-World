@@ -117,10 +117,15 @@ def _schema_dict(schema: dict[str, Any] | SchemaNode) -> dict[str, Any]:
     if isinstance(schema, SchemaNode):
         result: dict[str, Any] = {}
         for key, value in schema.__dict__.items():
-            if value in (None, [], {}):
+            if value is None:
                 continue
             if key == "properties":
+                if not value:
+                    continue
                 result[key] = {name: _schema_dict(child) for name, child in value.items()}
+            elif key == "required":
+                if value:
+                    result[key] = value
             elif key == "items":
                 result[key] = _schema_dict(value)
             else:
