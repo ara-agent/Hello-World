@@ -21,7 +21,7 @@ def extract_words(text: str) -> list[str]:
 def top_words(text: str, limit: int) -> list[tuple[str, int]]:
     """Return the most common words in descending frequency order."""
     counts = Counter(extract_words(text))
-    return sorted(counts.items(), key=lambda item: (-item[1], item[0]))[:limit]
+    return counts.most_common(limit)
 
 
 def read_input(path: Path) -> str:
@@ -73,10 +73,6 @@ def main(argv: list[str] | None = None) -> int:
         return 1
 
     results = top_words(text, args.top)
-    if not results:
-        print(f"error: no words found in {args.path}", file=sys.stderr)
-        return 1
-
     for word, count in results:
         print(f"{word} {count}")
     return 0

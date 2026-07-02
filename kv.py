@@ -29,8 +29,7 @@ class KeyValueStore:
     def save(self) -> None:
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.open("w", encoding="utf-8") as file:
-            json.dump(self._data, file, indent=2, sort_keys=True)
-            file.write("\n")
+            json.dump(self._data, file)
 
     def load(self) -> None:
         if not self.path.exists():

@@ -32,14 +32,12 @@ def median(values: Sequence[Number]) -> Number:
 
 
 def mode(values: Sequence[ComparableNumber]) -> ComparableNumber:
-    """Return the most common value, using the smallest value to break ties."""
+    """Return the most common value, using the first-seen value to break ties."""
     if not values:
         raise ValueError("mode requires at least one value")
 
     counts = Counter(values)
-    highest_count = max(counts.values())
-    modes = [value for value, count in counts.items() if count == highest_count]
-    return min(modes)
+    return counts.most_common(1)[0][0]
 
 
 def stdev(values: Sequence[Number]) -> float:
