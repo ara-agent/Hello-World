@@ -66,7 +66,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 print(f"{task['id']}\t{status}\t{task['title']}")
             return 0
     except (KeyError, ValueError) as exc:
-        print(f"error: {exc}", file=sys.stderr)
+        message = exc.args[0] if exc.args else str(exc)
+        print(f"error: {message}", file=sys.stderr)
         return 1
 
     parser.error(f"unknown command: {args.command}")
