@@ -50,6 +50,21 @@ class ExpenseCliTests(unittest.TestCase):
 
         self.assertEqual((code, out, err), (0, "", ""))
 
+    def test_blank_category_filter_has_clear_error(self):
+        self.run_cli("add", "1.00", "food", "2026-07-02")
+
+        for category in ("", "   "):
+            with self.subTest(category=category):
+                stdout = io.StringIO()
+                stderr = io.StringIO()
+                with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+                    with self.assertRaises(SystemExit) as caught:
+                        expensecli.main(["--store", str(self.store), "ls", "--category", category])
+
+                self.assertEqual(caught.exception.code, 1)
+                self.assertEqual(stdout.getvalue(), "")
+                self.assertIn("error: category filter must not be empty", stderr.getvalue())
+
     def test_invalid_amount_has_clear_error(self):
         stdout = io.StringIO()
         stderr = io.StringIO()

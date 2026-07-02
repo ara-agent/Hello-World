@@ -41,6 +41,16 @@ class ExpenseStoreTests(unittest.TestCase):
 
         self.assertEqual([expense.id for expense in found], ["a", "b"])
 
+    def test_rejects_blank_category_filters(self):
+        for category in ("", "   "):
+            with self.subTest(category=category):
+                with self.assertRaisesRegex(ValueError, "category filter must not be empty"):
+                    self.store.list(category=category)
+
+    def test_rejects_non_string_category_filter(self):
+        with self.assertRaisesRegex(ValueError, "category filter must be a string"):
+            self.store.list(category=123)
+
     def test_rejects_inverted_date_range(self):
         with self.assertRaises(ValueError):
             self.store.list(start_date="2026-08-01", end_date="2026-07-01")

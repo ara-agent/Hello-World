@@ -50,7 +50,7 @@ class ExpenseStore:
         if start and end and start > end:
             raise ValueError("start_date must be on or before end_date")
 
-        wanted_category = category.strip() if category else None
+        wanted_category = _parse_optional_category(category)
         results = []
         for expense in self._load():
             expense_date = date.fromisoformat(expense.date)
@@ -136,6 +136,17 @@ def _parse_optional_date(value: str | None, field: str) -> date | None:
         return date.fromisoformat(value)
     except ValueError as exc:
         raise ValueError(f"{field} must be a valid ISO date in YYYY-MM-DD format") from exc
+
+
+def _parse_optional_category(value: str | None) -> str | None:
+    if value is None:
+        return None
+    if not isinstance(value, str):
+        raise ValueError("category filter must be a string")
+    cleaned = value.strip()
+    if not cleaned:
+        raise ValueError("category filter must not be empty")
+    return cleaned
 
 
 def _validate_month(month: str) -> None:
