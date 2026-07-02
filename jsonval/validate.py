@@ -144,7 +144,7 @@ def _matches_type(instance: Any, expected_type: str) -> bool:
     if expected_type == "number":
         return _is_number(instance)
     if expected_type == "integer":
-        return isinstance(instance, int) and not isinstance(instance, bool)
+        return _is_integer(instance)
     if expected_type == "boolean":
         return isinstance(instance, bool)
     if expected_type == "null":
@@ -154,6 +154,10 @@ def _matches_type(instance: Any, expected_type: str) -> bool:
 
 def _is_number(instance: Any) -> bool:
     return isinstance(instance, (int, float)) and not isinstance(instance, bool)
+
+
+def _is_integer(instance: Any) -> bool:
+    return _is_number(instance) and instance % 1 == 0
 
 
 def _in_enum(instance: Any, enum_values: Any) -> bool:

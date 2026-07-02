@@ -28,7 +28,8 @@ class ValidateTests(unittest.TestCase):
 
     def test_integer_type_valid_and_invalid(self):
         self.assertEqual(validate(2, {"type": "integer"}), [])
-        self.assertEqual(validate(2.0, {"type": "integer"}), ["/: expected integer"])
+        self.assertEqual(validate(2.0, {"type": "integer"}), [])
+        self.assertEqual(validate(2.5, {"type": "integer"}), ["/: expected integer"])
 
     def test_boolean_type_valid_and_invalid(self):
         self.assertEqual(validate(False, {"type": "boolean"}), [])
@@ -185,6 +186,23 @@ class CliTests(unittest.TestCase):
             instance = Path(tmp) / "instance.json"
             schema.write_text(json.dumps({"type": "object", "required": ["ok"]}), encoding="utf-8")
             instance.write_text(json.dumps({"ok": True}), encoding="utf-8")
+
+            result = subprocess.run(
+                [sys.executable, "-m", "jsonval.cli", str(schema), str(instance)],
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
+        self.assertEqual(result.returncode, 0)
+        self.assertEqual(result.stdout, "")
+
+    def test_cli_accepts_whole_float_for_integer_schema(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            schema = Path(tmp) / "schema.json"
+            instance = Path(tmp) / "instance.json"
+            schema.write_text(json.dumps({"type": "integer"}), encoding="utf-8")
+            instance.write_text("2.0", encoding="utf-8")
 
             result = subprocess.run(
                 [sys.executable, "-m", "jsonval.cli", str(schema), str(instance)],
