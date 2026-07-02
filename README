@@ -1,1 +1,16 @@
 Hello World!
+
+## Usage
+
+Use `KeyValueStore` from `kv.py` to keep a small JSON-backed dictionary:
+
+```
+from kv import KeyValueStore
+
+store = KeyValueStore("store.json")
+store.load()
+store.set("name", "Ara")
+store.save()
+```
+
+Run the tests with `python3 -m unittest`.
