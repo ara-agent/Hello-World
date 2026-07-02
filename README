@@ -1,1 +1,6 @@
 Hello World!
+
+## Word count utility
+
+This repo includes a small Python word-count CLI. See `docs/wordcount.md` for
+usage examples.
