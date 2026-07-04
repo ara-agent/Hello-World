@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello World</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f7f2;
+        --ink: #1f2933;
+        --muted: #5d6b75;
+        --line: #d8ddd2;
+        --accent: #0f766e;
+        --accent-dark: #115e59;
+        --panel: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+
+      .site-header {
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.86);
+      }
+
+      .nav {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 68px;
+        gap: 20px;
+      }
+
+      .brand {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      .nav a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.95rem;
+        margin-left: 18px;
+      }
+
+      .nav a:hover {
+        color: var(--ink);
+      }
+
+      main {
+        width: min(1100px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+        gap: 48px;
+        align-items: center;
+        min-height: calc(100vh - 68px);
+        padding: 56px 0 44px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.6rem, 7vw, 5.7rem);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 590px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: 1.15rem;
+        line-height: 1.6;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 32px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 18px;
+        border: 1px solid var(--accent);
+        border-radius: 6px;
+        background: var(--accent);
+        color: #fff;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .button.secondary {
+        background: transparent;
+        color: var(--accent-dark);
+      }
+
+      .showcase {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 22px;
+        box-shadow: 0 24px 60px rgba(31, 41, 51, 0.08);
+      }
+
+      .showcase img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        padding: 0 0 56px;
+      }
+
+      .feature {
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
+      }
+
+      .feature h2 {
+        margin: 0 0 8px;
+        font-size: 1.05rem;
+      }
+
+      .feature p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      @media (max-width: 760px) {
+        .nav {
+          align-items: flex-start;
+          flex-direction: column;
+          justify-content: center;
+          padding: 14px 0;
+        }
+
+        .nav a {
+          margin: 0 14px 0 0;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+          padding-top: 42px;
+        }
+
+        .features {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <div class="brand">Hello World</div>
+        <div>
+          <a href="#features">Features</a>
+          <a href="#start">Start</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="start">
+        <div>
+          <h1>A clean static website.</h1>
+          <p class="lead">
+            This page is plain HTML and CSS, ready to serve locally without a
+            build step, framework, or package install.
+          </p>
+          <div class="actions">
+            <a class="button" href="#features">View features</a>
+            <a class="button secondary" href="README">Read the repo note</a>
+          </div>
+        </div>
+        <div class="showcase" aria-label="Website preview image">
+          <img
+            src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&amp;fit=crop&amp;w=900&amp;q=80"
+            alt="Bright desk workspace with a laptop and notebooks"
+          >
+        </div>
+      </section>
+
+      <section class="features" id="features" aria-label="Features">
+        <article class="feature">
+          <h2>Static</h2>
+          <p>One HTML file with embedded CSS, so the page is easy to inspect and edit.</p>
+        </article>
+        <article class="feature">
+          <h2>Responsive</h2>
+          <p>The layout adapts cleanly from desktop screens down to small phones.</p>
+        </article>
+        <article class="feature">
+          <h2>Local</h2>
+          <p>Serve it with any static file server and open it at localhost.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
