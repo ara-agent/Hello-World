@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Cloud</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #172033;
+        --muted: #596579;
+        --paper: #f5f7fb;
+        --accent: #0b7f8c;
+        --accent-dark: #075a64;
+        --line: #d8dee8;
+        --warm: #f2b84b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--ink);
+        background:
+          linear-gradient(140deg, rgba(11, 127, 140, 0.16), transparent 42%),
+          linear-gradient(315deg, rgba(242, 184, 75, 0.18), transparent 34%),
+          var(--paper);
+      }
+
+      main {
+        display: grid;
+        min-height: 100vh;
+        place-items: center;
+        padding: 32px;
+      }
+
+      .panel {
+        width: min(100%, 760px);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.72);
+        padding: clamp(28px, 6vw, 56px);
+        box-shadow: 0 24px 70px rgba(23, 32, 51, 0.12);
+      }
+
+      p.kicker {
+        margin: 0 0 14px;
+        color: var(--accent-dark);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(3rem, 12vw, 6rem);
+        line-height: 0.95;
+      }
+
+      p.copy {
+        max-width: 560px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 2vw, 1.25rem);
+        line-height: 1.6;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 32px;
+      }
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        border-radius: 6px;
+        background: var(--accent);
+        color: white;
+        font-weight: 700;
+        padding: 0 18px;
+        text-decoration: none;
+      }
+
+      a:focus,
+      a:hover {
+        background: var(--accent-dark);
+      }
+
+      a.secondary {
+        border: 1px solid var(--line);
+        background: white;
+        color: var(--ink);
+      }
+
+      a.secondary:focus,
+      a.secondary:hover {
+        background: #eef3f8;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="panel" aria-labelledby="page-title">
+        <p class="kicker">Local static site</p>
+        <h1 id="page-title">Hello from the cloud.</h1>
+        <p class="copy">
+          A clean single-file HTML page served from this repository on localhost.
+        </p>
+        <div class="actions" aria-label="Page actions">
+          <a href="https://github.com/ara-agent/Hello-World">View project</a>
+          <a class="secondary" href="#page-title">Back to top</a>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
