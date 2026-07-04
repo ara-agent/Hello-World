@@ -3,16 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello World</title>
+    <title>Hello Cloud</title>
     <style>
       :root {
         color-scheme: light;
-        --ink: #18202a;
-        --muted: #53606f;
-        --paper: #f7f3ea;
-        --accent: #237c6d;
-        --accent-dark: #16564c;
-        --line: #d9d0c1;
+        --ink: #172033;
+        --muted: #596579;
+        --paper: #f5f7fb;
+        --accent: #0b7f8c;
+        --accent-dark: #075a64;
+        --line: #d8dee8;
+        --warm: #f2b84b;
       }
 
       * {
@@ -25,7 +26,8 @@
         font-family: Arial, Helvetica, sans-serif;
         color: var(--ink);
         background:
-          linear-gradient(135deg, rgba(35, 124, 109, 0.12), transparent 38%),
+          linear-gradient(140deg, rgba(11, 127, 140, 0.16), transparent 42%),
+          linear-gradient(315deg, rgba(242, 184, 75, 0.18), transparent 34%),
           var(--paper);
       }
 
@@ -37,12 +39,12 @@
       }
 
       .panel {
-        width: min(100%, 720px);
+        width: min(100%, 760px);
         border: 1px solid var(--line);
         border-radius: 8px;
         background: rgba(255, 255, 255, 0.72);
         padding: clamp(28px, 6vw, 56px);
-        box-shadow: 0 24px 70px rgba(24, 32, 42, 0.12);
+        box-shadow: 0 24px 70px rgba(23, 32, 51, 0.12);
       }
 
       p.kicker {
@@ -56,7 +58,7 @@
 
       h1 {
         margin: 0;
-        font-size: clamp(3rem, 12vw, 6.5rem);
+        font-size: clamp(3rem, 12vw, 6rem);
         line-height: 0.95;
       }
 
@@ -68,11 +70,17 @@
         line-height: 1.6;
       }
 
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 32px;
+      }
+
       a {
         display: inline-flex;
         align-items: center;
         min-height: 44px;
-        margin-top: 32px;
         border-radius: 6px;
         background: var(--accent);
         color: white;
@@ -85,17 +93,31 @@
       a:hover {
         background: var(--accent-dark);
       }
+
+      a.secondary {
+        border: 1px solid var(--line);
+        background: white;
+        color: var(--ink);
+      }
+
+      a.secondary:focus,
+      a.secondary:hover {
+        background: #eef3f8;
+      }
     </style>
   </head>
   <body>
     <main>
       <section class="panel" aria-labelledby="page-title">
-        <p class="kicker">Static HTML</p>
-        <h1 id="page-title">Hello, world.</h1>
+        <p class="kicker">Local static site</p>
+        <h1 id="page-title">Hello from the cloud.</h1>
         <p class="copy">
-          A tiny single-file website served locally from this repository.
+          A clean single-file HTML page served from this repository on localhost.
         </p>
-        <a href="https://github.com/ara-agent/Hello-World">View project</a>
+        <div class="actions" aria-label="Page actions">
+          <a href="https://github.com/ara-agent/Hello-World">View project</a>
+          <a class="secondary" href="#page-title">Back to top</a>
+        </div>
       </section>
     </main>
   </body>
